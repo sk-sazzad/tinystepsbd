@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার অর্ডার - Tiny Steps BD</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Orders Page -->
+    <section class="orders-page">
+        <div class="container">
+            <h1 class="page-title">আমার অর্ডার</h1>
+            
+            <div class="orders-content">
+                <div class="order-search">
+                    <input type="text" id="orderSearch" placeholder="অর্ডার আইডি দিয়ে খুঁজুন...">
+                    <button class="btn" id="searchOrderBtn">খুঁজুন</button>
+                </div>
+
+                <div class="orders-list" id="ordersList">
+                    <div class="no-orders">
+                        <div class="no-orders-icon">📦</div>
+                        <h3>কোন অর্ডার পাওয়া যায়নি</h3>
+                        <p>আপনার কোন অর্ডার ইতিহাস নেই। নতুন অর্ডার দিতে আমাদের শপ পরিদর্শন করুন।</p>
+                        <a href="shop.html" class="btn">শপিং করুন</a>
+                    </div>
+                </div>
+
+                <div class="order-tracking" id="orderTracking" style="display: none;">
+                    <h3>অর্ডার ট্র্যাকিং</h3>
+                    <div class="tracking-steps">
+                        <div class="tracking-step active">
+                            <div class="step-icon">📦</div>
+                            <span>অর্ডার প্রসেসিং</span>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="step-icon">🚚</div>
+                            <span>শিপড</span>
+                        </div>
+                        <div class="tracking-step">
+                            <div class="step-icon">🏠</div>
+                            <span>ডেলিভার্ড</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Load components
+        loadComponent('header', 'components/header.html');
+        loadComponent('footer', 'components/footer.html');
+        
+        // Order search functionality
+        document.getElementById('searchOrderBtn').addEventListener('click', function() {
+            const orderId = document.getElementById('orderSearch').value.trim();
+            if (orderId) {
+                document.getElementById('orderTracking').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

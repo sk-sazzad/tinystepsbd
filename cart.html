@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শপিং কার্ট - Tiny Steps BD</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="page-title">আপনার শপিং কার্ট</h1>
+            
+            <div class="cart-page-content">
+                <div class="cart-items-section" id="cartPageItems">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>অর্ডার সামারি</h3>
+                        <div class="summary-row">
+                            <span>সাবটোটাল</span>
+                            <span id="subtotal">৳0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>ডেলিভারি চার্জ</span>
+                            <span id="deliveryFee">৳80</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>মোট</span>
+                            <span id="totalAmount">৳0</span>
+                        </div>
+                        <button class="checkout-btn full-width" id="proceedToCheckout">
+                            চেকআউট করুন
+                        </button>
+                        <a href="shop.html" class="continue-shopping">শপিং চালিয়ে যান</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Load components
+        loadComponent('header', 'components/header.html');
+        loadComponent('footer', 'components/footer.html');
+        
+        // Load cart page
+        loadCartPage();
+    </script>
+</body>
+</html>

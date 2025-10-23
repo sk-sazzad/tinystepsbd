@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অর্ডার সফল - Tiny Steps BD</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Success Page -->
+    <section class="success-page">
+        <div class="container">
+            <div class="success-content">
+                <div class="success-icon">🎉</div>
+                <h1>অর্ডার সফলভাবে সম্পন্ন হয়েছে!</h1>
+                <p class="success-message" id="successMessage">
+                    আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।
+                </p>
+                <div class="order-details" id="orderDetails">
+                    <!-- Order details will be loaded here -->
+                </div>
+                <div class="success-actions">
+                    <a href="index.html" class="btn">হোমপেজে ফিরে যান</a>
+                    <a href="shop.html" class="btn btn-outline">আরও শপিং করুন</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Load components
+        loadComponent('header', 'components/header.html');
+        loadComponent('footer', 'components/footer.html');
+        
+        // Display order success details
+        displayOrderSuccess();
+    </script>
+</body>
+</html>

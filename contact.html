@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>যোগাযোগ - Tiny Steps BD</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Contact Page -->
+    <section class="contact-page">
+        <div class="container">
+            <h1 class="page-title">যোগাযোগ করুন</h1>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-section">
+                        <h3>আমাদের সাথে যোগাযোগ</h3>
+                        <p>যেকোনো প্রশ্ন বা সহায়তার জন্য আমাদের সাথে যোগাযোগ করতে নির্দ্বিধায় কল করুন বা মেসেজ করুন।</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <strong>ফোন নম্বর</strong>
+                                    <span>+880 1XXX-XXXXXX</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-text">
+                                    <strong>ইমেইল</strong>
+                                    <span>info@tinystepsbd.com</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <strong>ঠিকানা</strong>
+                                    <span>ঢাকা, বাংলাদেশ</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <strong>কাজের সময়</strong>
+                                    <span>সকাল ৯টা - রাত ১০টা</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-section">
+                        <h3>সোশ্যাল মিডিয়া</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link facebook">Facebook</a>
+                            <a href="#" class="social-link instagram">Instagram</a>
+                            <a href="#" class="social-link whatsapp">WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <form class="contact-form" id="contactForm">
+                        <h3>মেসেজ পাঠান</h3>
+                        <div class="form-group">
+                            <label for="contactName">আপনার নাম *</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">ইমেইল *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">মোবাইল নম্বর *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">বিষয় *</label>
+                            <input type="text" id="contactSubject" name="contactSubject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">মেসেজ *</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn full-width">মেসেজ পাঠান</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Load components
+        loadComponent('header', 'components/header.html');
+        loadComponent('footer', 'components/footer.html');
+        
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
