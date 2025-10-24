@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Steps BD - শিশুদের জুতা ও স্যান্ডেল</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>আপনার শিশুর প্রথম পদচিহ্ন</h1>
+            <p>বাংলাদেশের সেরা কোয়ালিটির বেবি জুতা ও স্যান্ডেল। নরম, আরামদায়ক এবং স্টাইলিশ ডিজাইন।</p>
+            <a href="shop.html" class="btn">শপিং শুরু করুন</a>
+        </div>
+    </section>
+
+    <!-- Compact Categories -->
+    <section class="categories-compact" id="categories">
+        <div class="container">
+            <h2 class="section-title">ক্যাটেগরী সমূহ</h2>
+            <div class="categories-compact-grid" id="categoriesGrid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">জনপ্রিয় প্রোডাক্ট</h2>
+            <div class="products-grid" id="featuredProducts">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>প্রোডাক্ট লোড হচ্ছে...</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="shop.html" class="btn btn-outline">সব প্রোডাক্ট দেখুন</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Cart Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h2>আপনার কার্ট</h2>
+            <button class="close-cart" id="closeCart">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total" id="cartTotal">মোট: ৳0</div>
+        <button class="checkout-btn" id="checkoutBtn">চেকআউট</button>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Load components
+        loadComponent('header', 'components/header.html');
+        loadComponent('footer', 'components/footer.html');
+        
+        // Load featured products and categories
+        loadFeaturedProducts();
+        loadCategories();
+    </script>
+</body>
+</html>
