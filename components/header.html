@@ -1,0 +1,204 @@
+<!-- Header Component -->
+<header>
+    <div class="container header-container">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <img src="assets/images/icons/ui/logo.png" alt="TinyStepsBD" onerror="this.src='assets/images/placeholder.jpg'">
+            </div>
+            <div class="logo-text">
+                <span class="brand-name">TinyStepsBD</span>
+                <span class="brand-tagline">শিশুর প্রথম পদক্ষেপ</span>
+            </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html" class="nav-link">হোম</a></li>
+                <li><a href="shop.html" class="nav-link">পণ্য</a></li>
+                <li><a href="about.html" class="nav-link">আমাদের সম্পর্কে</a></li>
+                <li><a href="contact.html" class="nav-link">যোগাযোগ</a></li>
+            </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <!-- Search Button -->
+            <div class="search-container">
+                <button class="search-btn" id="search-toggle">
+                    <img src="assets/images/icons/ui/search.png" alt="খুঁজুন" onerror="this.src='assets/images/placeholder.jpg'">
+                </button>
+                <div class="search-box" id="search-box">
+                    <input type="text" placeholder="পণ্য খুঁজুন..." id="search-input">
+                    <button class="search-submit">
+                        <img src="assets/images/icons/ui/search.png" alt="খুঁজুন" onerror="this.src='assets/images/placeholder.jpg'">
+                    </button>
+                </div>
+            </div>
+
+            <!-- User Account -->
+            <div class="user-account">
+                <button class="account-btn" id="account-btn">
+                    <img src="assets/images/icons/ui/user.png" alt="অ্যাকাউন্ট" onerror="this.src='assets/images/placeholder.jpg'">
+                </button>
+                <div class="account-dropdown" id="account-dropdown">
+                    <a href="orders.html" class="dropdown-item">
+                        <img src="assets/images/icons/ui/orders.png" alt="আমার অর্ডার" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>আমার অর্ডার</span>
+                    </a>
+                    <a href="profile.html" class="dropdown-item">
+                        <img src="assets/images/icons/ui/profile.png" alt="প্রোফাইল" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>প্রোফাইল</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="logout-btn">
+                        <img src="assets/images/icons/ui/logout.png" alt="লগআউট" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>লগআউট</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shopping Cart -->
+            <div class="shopping-cart">
+                <a href="cart.html" class="cart-btn">
+                    <img src="assets/images/icons/ui/cart.png" alt="কার্ট" onerror="this.src='assets/images/placeholder.jpg'">
+                    <span class="cart-count" id="header-cart-count">0</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-header">
+            <span class="mobile-nav-title">মেনু</span>
+            <button class="mobile-close-btn" id="mobile-close-btn">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link">হোম</a></li>
+            <li><a href="shop.html" class="mobile-nav-link">পণ্য</a></li>
+            <li><a href="about.html" class="mobile-nav-link">আমাদের সম্পর্কে</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">যোগাযোগ</a></li>
+            <li class="mobile-nav-divider"></li>
+            <li><a href="orders.html" class="mobile-nav-link">আমার অর্ডার</a></li>
+            <li><a href="profile.html" class="mobile-nav-link">প্রোফাইল</a></li>
+        </ul>
+        
+        <!-- Mobile Cart Info -->
+        <div class="mobile-cart-info">
+            <a href="cart.html" class="mobile-cart-btn">
+                <img src="assets/images/icons/ui/cart.png" alt="কার্ট" onerror="this.src='assets/images/placeholder.jpg'">
+                <span>শপিং কার্ট</span>
+                <span class="mobile-cart-count" id="mobile-cart-count">0 আইটেম</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-overlay-content">
+            <div class="search-header">
+                <h3>পণ্য খুঁজুন</h3>
+                <button class="search-close-btn" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-input-container">
+                <input type="text" placeholder="আপনি কী খুঁজছেন?" id="overlay-search-input">
+                <button class="search-submit-btn">
+                    <img src="assets/images/icons/ui/search.png" alt="খুঁজুন" onerror="this.src='assets/images/placeholder.jpg'">
+                </button>
+            </div>
+            <div class="search-suggestions">
+                <h4>জনপ্রিয় খোঁজা</h4>
+                <div class="suggestion-tags">
+                    <span class="suggestion-tag">ছেলেদের জুতা</span>
+                    <span class="suggestion-tag">মেয়েদের জুতা</span>
+                    <span class="suggestion-tag">LED জুতা</span>
+                    <span class="suggestion-tag">রাজকুমারী জুতা</span>
+                    <span class="suggestion-tag">স্পোর্টস জুতা</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    // Header functionality will be implemented in main JS files
+    // This script is for basic interactivity
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileCloseBtn = document.getElementById('mobile-close-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        if (mobileCloseBtn && mobileNav) {
+            mobileCloseBtn.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Search functionality
+        const searchToggle = document.getElementById('search-toggle');
+        const searchCloseBtn = document.getElementById('search-close-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        
+        if (searchToggle && searchOverlay) {
+            searchToggle.addEventListener('click', function() {
+                searchOverlay.classList.add('active');
+                document.getElementById('overlay-search-input').focus();
+            });
+        }
+        
+        if (searchCloseBtn && searchOverlay) {
+            searchCloseBtn.addEventListener('click', function() {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        // Account dropdown
+        const accountBtn = document.getElementById('account-btn');
+        const accountDropdown = document.getElementById('account-dropdown');
+        
+        if (accountBtn && accountDropdown) {
+            accountBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                accountDropdown.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                accountDropdown.classList.remove('active');
+            });
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('tinystepsbd_cart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const headerCartCount = document.getElementById('header-cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            if (headerCartCount) headerCartCount.textContent = totalItems;
+            if (mobileCartCount) mobileCartCount.textContent = `${totalItems} আইটেম`;
+        }
+        
+        // Initial cart count update
+        updateCartCount();
+    });
+</script>

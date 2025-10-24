@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অর্ডার সফল - TinyStepsBD</title>
+    <meta name="description" content="আপনার অর্ডার সফলভাবে সম্পন্ন হয়েছে। TinyStepsBD এ অর্ডার করার জন্য ধন্যবাদ।">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/ui/logo.png">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Success Section -->
+    <section class="success-section">
+        <div class="container">
+            <div class="success-content">
+                <!-- Success Icon -->
+                <div class="success-icon">
+                    <div class="icon-circle">
+                        <img src="assets/images/icons/ui/success.png" alt="সফল" onerror="this.src='assets/images/placeholder.jpg'">
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message">
+                    <h1>অর্ডার সফলভাবে সম্পন্ন হয়েছে!</h1>
+                    <p>আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবে।</p>
+                </div>
+
+                <!-- Order Details -->
+                <div class="order-details-card">
+                    <div class="order-header">
+                        <h2>অর্ডার বিবরণ</h2>
+                        <span class="order-badge" id="order-status">কনফার্মড</span>
+                    </div>
+                    
+                    <div class="order-info-grid">
+                        <div class="order-info-item">
+                            <span class="info-label">অর্ডার আইডি:</span>
+                            <span class="info-value" id="order-id">TS-202512345678</span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">অর্ডার তারিখ:</span>
+                            <span class="info-value" id="order-date">২৫ ডিসেম্বর, ২০২৫</span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">মোট Amount:</span>
+                            <span class="info-value" id="order-total">২,৮৭০ ৳</span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">পেমেন্ট মাধ্যম:</span>
+                            <span class="info-value" id="payment-method">ক্যাশ অন ডেলিভারি</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div class="customer-info-card">
+                    <h3>গ্রাহক তথ্য</h3>
+                    <div class="customer-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">নাম:</span>
+                            <span class="info-value" id="customer-name">আফসানা বেগম</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">মোবাইল:</span>
+                            <span class="info-value" id="customer-phone">০১7XXXXXXXX</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ইমেইল:</span>
+                            <span class="info-value" id="customer-email">afsana@example.com</span>
+                        </div>
+                        <div class="info-item full-width">
+                            <span class="info-label">ঠিকানা:</span>
+                            <span class="info-value" id="customer-address">বাড়ি নং ১২, রোড নং ০৭, মিরপুর, ঢাকা-১২১৬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="order-items-card">
+                    <h3>অর্ডারকৃত পণ্য</h3>
+                    <div class="order-items-list" id="order-items">
+                        <!-- Order items will be loaded dynamically -->
+                    </div>
+                    
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>সাবটোটাল:</span>
+                            <span id="summary-subtotal">২,৮৭০ ৳</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>ডেলিভারি চার্জ:</span>
+                            <span id="summary-delivery">৮০ ৳</span>
+                        </div>
+                        <div class="summary-row discount">
+                            <span>ডিসকাউন্ট:</span>
+                            <span id="summary-discount">০ ৳</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>মোট Amount:</span>
+                            <span id="summary-total">২,৯৫০ ৳</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Information -->
+                <div class="delivery-info-card">
+                    <h3>ডেলিভারি তথ্য</h3>
+                    <div class="delivery-details">
+                        <div class="delivery-item">
+                            <img src="assets/images/icons/features/delivery.png" alt="ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                            <div class="delivery-text">
+                                <strong>আনুমানিক ডেলিভারি তারিখ</strong>
+                                <p id="delivery-date">২৭ ডিসেম্বর, ২০২৫</p>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <img src="assets/images/icons/features/cod.png" alt="পেমেন্ট" onerror="this.src='assets/images/placeholder.jpg'">
+                            <div class="delivery-text">
+                                <strong>পেমেন্ট মাধ্যম</strong>
+                                <p id="delivery-payment">ক্যাশ অন ডেলিভারি</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps-card">
+                    <h3>পরবর্তী ধাপসমূহ</h3>
+                    <div class="steps-timeline">
+                        <div class="step completed">
+                            <div class="step-icon">1</div>
+                            <div class="step-content">
+                                <h4>অর্ডার কনফার্মড</h4>
+                                <p>আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে</p>
+                            </div>
+                        </div>
+                        <div class="step active">
+                            <div class="step-icon">2</div>
+                            <div class="step-content">
+                                <h4>প্রসেসিং</h4>
+                                <p>আমরা আপনার অর্ডারটি প্রসেস করছি</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">3</div>
+                            <div class="step-content">
+                                <h4>শিপড</h4>
+                                <p>আপনার অর্ডারটি শিপ করা হবে</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">4</div>
+                            <div class="step-content">
+                                <h4>ডেলিভার্ড</h4>
+                                <p>আপনার অর্ডারটি ডেলিভার করা হবে</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Information -->
+                <div class="support-card">
+                    <h3>সহায়তা প্রয়োজন?</h3>
+                    <p>আপনার অর্ডার সম্পর্কিত কোন প্রশ্ন থাকলে আমাদের সাথে যোগাযোগ করতে দ্বিধা করবেন না।</p>
+                    <div class="support-channels">
+                        <div class="channel">
+                            <img src="assets/images/icons/ui/phone.png" alt="ফোন" onerror="this.src='assets/images/placeholder.jpg'">
+                            <div>
+                                <strong>কল করুন</strong>
+                                <span>+8801XXX-XXXXXX</span>
+                            </div>
+                        </div>
+                        <div class="channel">
+                            <img src="assets/images/icons/ui/whatsapp.png" alt="হোয়াটসঅ্যাপ" onerror="this.src='assets/images/placeholder.jpg'">
+                            <div>
+                                <strong>হোয়াটসঅ্যাপ</strong>
+                                <span>+8801XXX-XXXXXX</span>
+                            </div>
+                        </div>
+                        <div class="channel">
+                            <img src="assets/images/icons/ui/email.png" alt="ইমেইল" onerror="this.src='assets/images/placeholder.jpg'">
+                            <div>
+                                <strong>ইমেইল</strong>
+                                <span>support@tinystepsbd.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-primary">
+                        <span class="btn-icon">🏠</span>
+                        হোমপেজে ফিরে যান
+                    </a>
+                    <a href="shop.html" class="btn btn-secondary">
+                        <span class="btn-icon">🛍️</span>
+                        আরও শপিং করুন
+                    </a>
+                    <button class="btn btn-outline" id="print-receipt">
+                        <span class="btn-icon">🖨️</span>
+                        রিসিপ্ট প্রিন্ট করুন
+                    </button>
+                </div>
+
+                <!-- Order Tracking -->
+                <div class="tracking-card">
+                    <h3>অর্ডার ট্র্যাক করুন</h3>
+                    <p>আপনার অর্ডারের সর্বশেষ অবস্থা জানতে নিচের বাটনে ক্লিক করুন:</p>
+                    <a href="orders.html" class="btn btn-outline">
+                        <span class="btn-icon">📱</span>
+                        অর্ডার ট্র্যাক করুন
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Products -->
+    <section class="recommended-products">
+        <div class="container">
+            <h2 class="section-title">আপনার জন্য আরও পণ্য</h2>
+            <p class="section-subtitle">এই পণ্যগুলোও আপনার পছন্দ হতে পারে</p>
+            <div class="products-grid" id="recommended-products">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>পণ্য লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/data-manager.js"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initializeMobileMenu();
+                    setActiveNavLink('success');
+                    updateCartCount();
+                });
+
+            // Load footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Load order details
+            loadOrderDetails();
+            
+            // Load recommended products
+            loadRecommendedProducts();
+            
+            // Initialize event listeners
+            initializeEventListeners();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+        }
+
+        function setActiveNavLink(page) {
+            // This function will be implemented in main JS
+            console.log('Setting active nav for:', page);
+        }
+
+        function updateCartCount() {
+            // Clear cart after successful order
+            localStorage.removeItem('tinystepsbd_cart');
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                cartCount.textContent = '0';
+            }
+        }
+
+        function loadOrderDetails() {
+            // Get order ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order_id');
+            
+            if (!orderId) {
+                // If no order ID, show generic success
+                showGenericSuccess();
+                return;
+            }
+            
+            // Fetch order details (in real implementation, this would call your API)
+            fetchOrderDetails(orderId);
+        }
+
+        function showGenericSuccess() {
+            // Set current date
+            const now = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const dateString = now.toLocaleDateString('bn-BD', options);
+            
+            document.getElementById('order-date').textContent = dateString;
+            document.getElementById('delivery-date').textContent = getDeliveryDate(now);
+            
+            // Show generic order details
+            displayOrderDetails({
+                order_id: 'TS-' + Date.now().toString().slice(-8),
+                order_date: dateString,
+                total_amount: '২,৯৫০',
+                payment_method: 'ক্যাশ অন ডেলিভারি',
+                customer_name: 'গ্রাহক',
+                phone: '০১XXXXXXXXX',
+                email: 'ইমেইল@example.com',
+                address: 'ঠিকানা লোড হচ্ছে...',
+                items: [
+                    {
+                        name: 'শিশুর জুতা',
+                        price: 890,
+                        quantity: 1,
+                        color: 'সাদা',
+                        size: '25',
+                        image: 'assets/images/placeholder.jpg'
+                    }
+                ],
+                subtotal: '২,৮৭০',
+                delivery: '৮০',
+                discount: '০',
+                total: '২,৯৫০'
+            });
+        }
+
+        function fetchOrderDetails(orderId) {
+            // In real implementation, this would call your Google Apps Script API
+            console.log('Fetching order details for:', orderId);
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                const orderData = {
+                    order_id: orderId,
+                    order_date: '২৫ ডিসেম্বর, ২০২৫',
+                    total_amount: '২,৯৫০',
+                    payment_method: 'ক্যাশ অন ডেলিভারি',
+                    customer_name: 'আফসানা বেগম',
+                    phone: '০১7XXXXXXXX',
+                    email: 'afsana@example.com',
+                    address: 'বাড়ি নং ১২, রোড নং ০৭, মিরপুর, ঢাকা-১২১৬',
+                    items: [
+                        {
+                            name: '০-১.৫ বছর বয়সী শিশুর বাচ্চাদের জুতা',
+                            price: 890,
+                            quantity: 1,
+                            color: 'সাদা',
+                            size: '25',
+                            image: 'https://drive.google.com/uc?export=view&id=1QSWmGWKcmh0PHEZDThC2m4PMOyy4iljU'
+                        },
+                        {
+                            name: 'LED হালকা ছেলেদের স্পোর্টস জুতা',
+                            price: 1490,
+                            quantity: 2,
+                            color: 'খাকি',
+                            size: '26',
+                            image: 'https://drive.google.com/uc?export=view&id=13TN1Fx8DJIWv8QUoyuAbCbtWg9AERmnu'
+                        }
+                    ],
+                    subtotal: '২,৮৭০',
+                    delivery: '৮০',
+                    discount: '০',
+                    total: '২,৯৫০'
+                };
+                
+                displayOrderDetails(orderData);
+            }, 1000);
+        }
+
+        function displayOrderDetails(order) {
+            // Update order information
+            document.getElementById('order-id').textContent = order.order_id;
+            document.getElementById('order-date').textContent = order.order_date;
+            document.getElementById('order-total').textContent = order.total_amount + ' ৳';
+            document.getElementById('payment-method').textContent = order.payment_method;
+            
+            // Update customer information
+            document.getElementById('customer-name').textContent = order.customer_name;
+            document.getElementById('customer-phone').textContent = order.phone;
+            document.getElementById('customer-email').textContent = order.email;
+            document.getElementById('customer-address').textContent = order.address;
+            
+            // Update delivery information
+            document.getElementById('delivery-payment').textContent = order.payment_method;
+            
+            // Update order items
+            displayOrderItems(order.items);
+            
+            // Update order summary
+            document.getElementById('summary-subtotal').textContent = order.subtotal + ' ৳';
+            document.getElementById('summary-delivery').textContent = order.delivery + ' ৳';
+            document.getElementById('summary-discount').textContent = order.discount + ' ৳';
+            document.getElementById('summary-total').textContent = order.total + ' ৳';
+        }
+
+        function displayOrderItems(items) {
+            const itemsContainer = document.getElementById('order-items');
+            
+            itemsContainer.innerHTML = items.map(item => `
+                <div class="order-item">
+                    <div class="item-image">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='assets/images/placeholder.jpg'">
+                    </div>
+                    <div class="item-details">
+                        <h4 class="item-name">${item.name}</h4>
+                        <div class="item-meta">
+                            <span class="item-variant">রং: ${item.color}</span>
+                            <span class="item-variant">সাইজ: ${item.size}</span>
+                            <span class="item-quantity">পরিমাণ: ${item.quantity}</span>
+                        </div>
+                    </div>
+                    <div class="item-price">
+                        ${item.price * item.quantity} ৳
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getDeliveryDate(orderDate) {
+            const date = orderDate instanceof Date ? orderDate : new Date();
+            date.setDate(date.getDate() + 2); // Add 2 days for delivery
+            
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('bn-BD', options);
+        }
+
+        function loadRecommendedProducts() {
+            // This would fetch recommended products from API
+            // For now, we'll simulate with a timeout
+            setTimeout(() => {
+                const container = document.getElementById('recommended-products');
+                container.innerHTML = `
+                    <div class="product-card">
+                        <img src="https://drive.google.com/uc?export=view&id=1DocgDYQU8Thb5P61lXevDZiAltxayCkZ" alt="প্রোডাক্ট" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                        <div class="product-info">
+                            <span class="product-category">Girls</span>
+                            <h3 class="product-title">নবজাতক শিশুর রাজকুমারী জুতা</h3>
+                            <div class="product-price">৭৮০ ৳</div>
+                            <button class="add-to-cart">কার্টে যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://drive.google.com/uc?export=view&id=16K8gM0qkQQ9e3WP0sOSjDFemAL8DIn-Z" alt="প্রোডাক্ট" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                        <div class="product-info">
+                            <span class="product-category">Boys/Girls</span>
+                            <h3 class="product-title">হালকা সুন্দর মিকি কার্টুন জুতা</h3>
+                            <div class="product-price">১,৩৯০ ৳</div>
+                            <button class="add-to-cart">কার্টে যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://drive.google.com/uc?export=view&id=13w3B8LcSpQs10U0nObyjfNbAfvNf-UKm" alt="প্রোডাক্ট" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                        <div class="product-info">
+                            <span class="product-category">Boys/Girls</span>
+                            <h3 class="product-title">LED স্পোর্টস জুতা চামড়ার কার্টুন</h3>
+                            <div class="product-price">১,৩৮০ ৳</div>
+                            <button class="add-to-cart">কার্টে যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://drive.google.com/uc?export=view&id=1f1fixiQPxoFMhYPsHQgy5JylpimATe6B" alt="প্রোডাক্ট" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                        <div class="product-info">
+                            <span class="product-category">Girls</span>
+                            <h3 class="product-title">মেয়েদের মেজাজ রাজকুমারী একক জুতা</h3>
+                            <div class="product-price">১,৫৫০ ৳</div>
+                            <button class="add-to-cart">কার্টে যোগ করুন</button>
+                        </div>
+                    </div>
+                `;
+            }, 1500);
+        }
+
+        function initializeEventListeners() {
+            // Print receipt button
+            document.getElementById('print-receipt').addEventListener('click', function() {
+                window.print();
+            });
+            
+            // Add to cart buttons in recommended products
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const productCard = e.target.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    alert(`${productName} কার্টে যোগ করা হয়েছে!`);
+                }
+            });
+        }
+
+        // Update delivery date on page load
+        setTimeout(() => {
+            const orderDate = document.getElementById('order-date').textContent;
+            if (orderDate && orderDate !== 'অর্ডার তারিখ:') {
+                const date = new Date();
+                document.getElementById('delivery-date').textContent = getDeliveryDate(date);
+            }
+        }, 500);
+    </script>
+
+    <style>
+        /* Print Styles */
+        @media print {
+            header, 
+            .success-icon,
+            .recommended-products,
+            .action-buttons,
+            .tracking-card,
+            footer {
+                display: none !important;
+            }
+            
+            .success-section {
+                padding: 0;
+            }
+            
+            .success-content {
+                max-width: 100%;
+            }
+            
+            .order-details-card,
+            .customer-info-card,
+            .order-items-card,
+            .delivery-info-card {
+                break-inside: avoid;
+                margin-bottom: 20px;
+            }
+            
+            .success-message h1 {
+                color: #000 !important;
+            }
+            
+            .btn {
+                display: none !important;
+            }
+        }
+    </style>
+</body>
+</html>

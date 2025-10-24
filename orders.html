@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার অর্ডার - TinyStepsBD</title>
+    <meta name="description" content="আপনার অর্ডার ট্র্যাক করুন এবং পূর্বের অর্ডারগুলোর অবস্থা দেখুন। TinyStepsBD অর্ডার ম্যানেজমেন্ট।">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/ui/logo.png">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">হোম</a>
+                <span class="separator">/</span>
+                <span class="current">আমার অর্ডার</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Orders Section -->
+    <section class="orders-section">
+        <div class="container">
+            <div class="orders-header">
+                <h1>আমার অর্ডার</h1>
+                <p>আপনার সকল অর্ডারের তালিকা এবং বর্তমান অবস্থা</p>
+            </div>
+
+            <!-- Order Tracking -->
+            <div class="order-tracking">
+                <h2>অর্ডার ট্র্যাক করুন</h2>
+                <div class="tracking-form">
+                    <div class="form-group">
+                        <label for="order-search">অর্ডার আইডি দিয়ে খুঁজুন</label>
+                        <div class="search-box">
+                            <input type="text" id="order-search" placeholder="অর্ডার আইডি লিখুন (যেমন: TS-202512345678)">
+                            <button class="btn btn-primary" id="track-order">ট্র্যাক করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Filter -->
+            <div class="orders-filter">
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">সকল অর্ডার</button>
+                    <button class="filter-btn" data-filter="pending">পেন্ডিং</button>
+                    <button class="filter-btn" data-filter="processing">প্রসেসিং</button>
+                    <button class="filter-btn" data-filter="shipped">শিপড</button>
+                    <button class="filter-btn" data-filter="delivered">ডেলিভার্ড</button>
+                    <button class="filter-btn" data-filter="cancelled">ক্যান্সেলড</button>
+                </div>
+                <div class="sort-options">
+                    <select id="sort-orders">
+                        <option value="newest">নতুনতম প্রথম</option>
+                        <option value="oldest">পুরনোতম প্রথম</option>
+                        <option value="price-high">দাম: বেশি থেকে কম</option>
+                        <option value="price-low">দাম: কম থেকে বেশি</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Orders List -->
+            <div class="orders-container">
+                <div class="orders-list" id="orders-list">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>অর্ডার লোড হচ্ছে...</p>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-orders" id="empty-orders" style="display: none;">
+                    <div class="empty-state">
+                        <img src="assets/images/icons/ui/empty-orders.png" alt="কোন অর্ডার নেই" onerror="this.src='assets/images/placeholder.jpg'">
+                        <h3>কোন অর্ডার পাওয়া যায়নি</h3>
+                        <p>আপনার এখনও কোন অর্ডার নেই। নতুন পণ্য ব্রাউজ করুন এবং অর্ডার করুন।</p>
+                        <a href="shop.html" class="btn btn-primary">পণ্য ব্রাউজ করুন</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Details Modal -->
+            <div class="modal" id="order-details-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>অর্ডার বিবরণ</h2>
+                        <button class="close-modal" id="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Order details will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="orders-faq">
+        <div class="container">
+            <h2 class="section-title">অর্ডার সম্পর্কিত সাধারণ প্রশ্ন</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>অর্ডার ট্র্যাক কিভাবে করব?</h3>
+                    <p>আপনার অর্ডার আইডি দিয়ে উপরের ট্র্যাকিং ফর্ম ব্যবহার করুন অথবা সরাসরি আমাদের হেল্পলাইনে কল করুন।</p>
+                </div>
+                <div class="faq-item">
+                    <h3>অর্ডার ক্যান্সেল করতে পারব?</h3>
+                    <p>হ্যাঁ, অর্ডার শিপ হওয়ার আগ পর্যন্ত আপনি অর্ডার ক্যান্সেল করতে পারবেন। আমাদের সাপোর্ট টিমে যোগাযোগ করুন।</p>
+                </div>
+                <div class="faq-item">
+                    <h3>ডেলিভারি সময় কত?</h3>
+                    <p>ঢাকায় ১-২ দিন, বিভাগীয় শহরে ২-৪ দিন, এবং অন্যান্য এলাকায় ৩-৫ কার্যদিবস সময় লাগে।</p>
+                </div>
+                <div class="faq-item">
+                    <h3>রিটার্ন করতে চাইলে কি করব?</h3>
+                    <p>পণ্য পাওয়ার ৭ দিনের মধ্যে আমাদের সাপোর্টে যোগাযোগ করুন। রিটার্ন রিকোয়েস্ট Approve হলে আমরা Instructions দেব।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-content">
+                <h2>অর্ডার সম্পর্কিত সাহায্য প্রয়োজন?</h2>
+                <p>আমাদের সাপোর্ট টিম আপনার যেকোনো প্রশ্নের উত্তর দিতে প্রস্তুত</p>
+                <div class="support-channels">
+                    <a href="tel:+8801XXXXXXXXX" class="support-channel">
+                        <img src="assets/images/icons/ui/phone.png" alt="ফোন" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>কল করুন</span>
+                    </a>
+                    <a href="https://wa.me/8801XXXXXXXXX" class="support-channel" target="_blank">
+                        <img src="assets/images/icons/ui/whatsapp.png" alt="হোয়াটসঅ্যাপ" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>হোয়াটসঅ্যাপ</span>
+                    </a>
+                    <a href="contact.html" class="support-channel">
+                        <img src="assets/images/icons/ui/email.png" alt="ইমেইল" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>ইমেইল করুন</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/data-manager.js"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initializeMobileMenu();
+                    setActiveNavLink('orders');
+                });
+
+            // Load footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Initialize orders page
+            initializeOrdersPage();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+        }
+
+        function setActiveNavLink(page) {
+            // This function will be implemented in main JS
+            console.log('Setting active nav for:', page);
+        }
+
+        function initializeOrdersPage() {
+            // Load orders
+            loadOrders();
+            
+            // Initialize event listeners
+            initializeEventListeners();
+        }
+
+        function loadOrders() {
+            // In real implementation, this would fetch from API
+            // For now, we'll use sample data
+            const orders = getSampleOrders();
+            
+            if (orders.length === 0) {
+                showEmptyOrders();
+            } else {
+                displayOrders(orders);
+            }
+        }
+
+        function getSampleOrders() {
+            return [
+                {
+                    id: 'TS-202512345678',
+                    date: '২৫ ডিসেম্বর, ২০২৫',
+                    status: 'processing',
+                    statusText: 'প্রসেসিং',
+                    total: '২,৯৫০',
+                    items: [
+                        {
+                            name: '০-১.৫ বছর বয়সী শিশুর বাচ্চাদের জুতা',
+                            price: 890,
+                            quantity: 1,
+                            image: 'https://drive.google.com/uc?export=view&id=1QSWmGWKcmh0PHEZDThC2m4PMOyy4iljU'
+                        },
+                        {
+                            name: 'LED হালকা ছেলেদের স্পোর্টস জুতা',
+                            price: 1490,
+                            quantity: 2,
+                            image: 'https://drive.google.com/uc?export=view&id=13TN1Fx8DJIWv8QUoyuAbCbtWg9AERmnu'
+                        }
+                    ],
+                    customer: {
+                        name: 'আফসানা বেগম',
+                        phone: '০১7XXXXXXXX',
+                        address: 'মিরপুর, ঢাকা'
+                    },
+                    timeline: [
+                        { status: 'ordered', date: '২৫ ডিসেম্বর, ২০২৫ ১০:৩০ AM', text: 'অর্ডার প্লেসড' },
+                        { status: 'confirmed', date: '২৫ ডিসেম্বর, ২০২৫ ১১:১৫ AM', text: 'অর্ডার কনফার্মড' },
+                        { status: 'processing', date: '২৬ ডিসেম্বর, ২০২৫ ০৯:০০ AM', text: 'প্রসেসিং' }
+                    ]
+                },
+                {
+                    id: 'TS-202512345679',
+                    date: '২০ ডিসেম্বর, ২০২৫',
+                    status: 'delivered',
+                    statusText: 'ডেলিভার্ড',
+                    total: '১,৩৮০',
+                    items: [
+                        {
+                            name: 'LED স্পোর্টস জুতা চামড়ার কার্টুন',
+                            price: 1380,
+                            quantity: 1,
+                            image: 'https://drive.google.com/uc?export=view&id=13w3B8LcSpQs10U0nObyjfNbAfvNf-UKm'
+                        }
+                    ],
+                    customer: {
+                        name: 'আফসানা বেগম',
+                        phone: '০১7XXXXXXXX',
+                        address: 'মিরপুর, ঢাকা'
+                    },
+                    timeline: [
+                        { status: 'ordered', date: '২০ ডিসেম্বর, ২০২৫ ০২:১৫ PM', text: 'অর্ডার প্লেসড' },
+                        { status: 'confirmed', date: '২০ ডিসেম্বর, ২০২৫ ০৩:০০ PM', text: 'অর্ডার কনফার্মড' },
+                        { status: 'shipped', date: '২১ ডিসেম্বর, ২০২৫ ১০:৩০ AM', text: 'শিপড' },
+                        { status: 'delivered', date: '২২ ডিসেম্বর, ২০২৫ ০৩:৪৫ PM', text: 'ডেলিভার্ড' }
+                    ]
+                }
+            ];
+        }
+
+        function showEmptyOrders() {
+            document.getElementById('orders-list').style.display = 'none';
+            document.getElementById('empty-orders').style.display = 'block';
+        }
+
+        function displayOrders(orders) {
+            const ordersList = document.getElementById('orders-list');
+            
+            ordersList.innerHTML = orders.map(order => `
+                <div class="order-card" data-status="${order.status}" data-id="${order.id}">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <h3 class="order-id">অর্ডার #${order.id}</h3>
+                            <span class="order-date">${order.date}</span>
+                        </div>
+                        <div class="order-status">
+                            <span class="status-badge ${order.status}">${order.statusText}</span>
+                            <span class="order-total">${order.total} ৳</span>
+                        </div>
+                    </div>
+                    
+                    <div class="order-items-preview">
+                        ${order.items.map(item => `
+                            <div class="order-item-preview">
+                                <img src="${item.image}" alt="${item.name}" onerror="this.src='assets/images/placeholder.jpg'">
+                                <span class="item-quantity">${item.quantity}</span>
+                            </div>
+                        `).join('')}
+                        ${order.items.length > 3 ? `<div class="more-items">+${order.items.length - 3}</div>` : ''}
+                    </div>
+                    
+                    <div class="order-actions">
+                        <button class="btn btn-outline view-order" data-id="${order.id}">বিস্তারিত দেখুন</button>
+                        ${order.status === 'processing' ? `
+                            <button class="btn btn-secondary cancel-order" data-id="${order.id}">অর্ডার ক্যান্সেল</button>
+                        ` : ''}
+                        ${order.status === 'delivered' ? `
+                            <button class="btn btn-primary reorder" data-id="${order.id}">আবার অর্ডার করুন</button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            ordersList.style.display = 'block';
+            document.getElementById('empty-orders').style.display = 'none';
+        }
+
+        function initializeEventListeners() {
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterOrders(filter);
+                });
+            });
+            
+            // Sort option
+            document.getElementById('sort-orders').addEventListener('change', function() {
+                sortOrders(this.value);
+            });
+            
+            // Track order button
+            document.getElementById('track-order').addEventListener('click', trackOrder);
+            
+            // Order actions
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('view-order')) {
+                    const orderId = e.target.getAttribute('data-id');
+                    viewOrderDetails(orderId);
+                }
+                
+                if (e.target.classList.contains('cancel-order')) {
+                    const orderId = e.target.getAttribute('data-id');
+                    cancelOrder(orderId);
+                }
+                
+                if (e.target.classList.contains('reorder')) {
+                    const orderId = e.target.getAttribute('data-id');
+                    reorderItems(orderId);
+                }
+            });
+            
+            // Modal close
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            document.getElementById('order-details-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        }
+
+        function filterOrders(filter) {
+            const orderCards = document.querySelectorAll('.order-card');
+            
+            orderCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-status') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function sortOrders(sortBy) {
+            // This would sort orders based on the selected option
+            console.log('Sorting orders by:', sortBy);
+        }
+
+        function trackOrder() {
+            const orderId = document.getElementById('order-search').value.trim();
+            
+            if (!orderId) {
+                alert('দয়া করে একটি অর্ডার আইডি লিখুন');
+                return;
+            }
+            
+            // In real implementation, this would call the API
+            console.log('Tracking order:', orderId);
+            
+            // For demo, we'll show the first order details
+            viewOrderDetails('TS-202512345678');
+        }
+
+        function viewOrderDetails(orderId) {
+            const orders = getSampleOrders();
+            const order = orders.find(o => o.id === orderId);
+            
+            if (!order) {
+                alert('অর্ডার পাওয়া যায়নি');
+                return;
+            }
+            
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="order-details">
+                    <div class="detail-section">
+                        <h3>অর্ডার তথ্য</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">অর্ডার আইডি:</span>
+                                <span class="detail-value">${order.id}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">অর্ডার তারিখ:</span>
+                                <span class="detail-value">${order.date}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">স্ট্যাটাস:</span>
+                                <span class="detail-value status-badge ${order.status}">${order.statusText}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">মোট Amount:</span>
+                                <span class="detail-value">${order.total} ৳</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>গ্রাহক তথ্য</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">নাম:</span>
+                                <span class="detail-value">${order.customer.name}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">ফোন:</span>
+                                <span class="detail-value">${order.customer.phone}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">ঠিকানা:</span>
+                                <span class="detail-value">${order.customer.address}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>অর্ডারকৃত পণ্য</h3>
+                        <div class="order-items-detailed">
+                            ${order.items.map(item => `
+                                <div class="detailed-item">
+                                    <img src="${item.image}" alt="${item.name}" onerror="this.src='assets/images/placeholder.jpg'">
+                                    <div class="item-info">
+                                        <h4>${item.name}</h4>
+                                        <div class="item-meta">
+                                            <span>পরিমাণ: ${item.quantity}</span>
+                                            <span>দাম: ${item.price} ৳</span>
+                                        </div>
+                                    </div>
+                                    <div class="item-total">${item.price * item.quantity} ৳</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>অর্ডার টাইমলাইন</h3>
+                        <div class="timeline">
+                            ${order.timeline.map(step => `
+                                <div class="timeline-step ${step.status}">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h4>${step.text}</h4>
+                                        <span class="timeline-date">${step.date}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('order-details-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('order-details-modal').style.display = 'none';
+        }
+
+        function cancelOrder(orderId) {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি এই অর্ডারটি ক্যান্সেল করতে চান?')) {
+                // In real implementation, this would call the API
+                console.log('Cancelling order:', orderId);
+                alert('অর্ডার ক্যান্সেল রিকোয়েস্ট পাঠানো হয়েছে। আমাদের টিম শীঘ্রই আপনার সাথে যোগাযোগ করবে।');
+            }
+        }
+
+        function reorderItems(orderId) {
+            // In real implementation, this would add all items from the order to cart
+            console.log('Reordering items from order:', orderId);
+            alert('পূর্বের অর্ডারের সকল পণ্য কার্টে যোগ করা হয়েছে!');
+            window.location.href = 'cart.html';
+        }
+    </script>
+</body>
+</html>

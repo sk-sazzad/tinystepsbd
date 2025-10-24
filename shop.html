@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পণ্যের সংগ্রহ - TinyStepsBD</title>
+    <meta name="description" content="TinyStepsBD এর সকল শিশু জুতা এবং স্যান্ডেলের সংগ্রহ দেখুন। বয়স এবং ক্যাটাগরি অনুযায়ী ফিল্টার করুন।">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/ui/logo.png">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">আমাদের সকল পণ্য</h1>
+            <p class="page-description">আপনার শিশুর জন্য সেরা জুতা এবং স্যান্ডেল নির্বাচন করুন</p>
+        </div>
+    </section>
+
+    <!-- Shop Controls -->
+    <section class="shop-controls">
+        <div class="container">
+            <div class="controls-grid">
+                <div class="search-box">
+                    <input type="text" id="product-search" placeholder="পণ্য খুঁজুন...">
+                    <button class="search-btn">
+                        <img src="assets/images/icons/ui/search.png" alt="খুঁজুন" onerror="this.src='assets/images/placeholder.jpg'">
+                    </button>
+                </div>
+                
+                <div class="filter-controls">
+                    <select id="category-filter">
+                        <option value="">সব ক্যাটাগরি</option>
+                        <option value="Boys">ছেলেদের জুতা</option>
+                        <option value="Girls">মেয়েদের জুতা</option>
+                        <option value="Boys/Girls">উভয়ের জন্য</option>
+                    </select>
+                    
+                    <select id="size-filter">
+                        <option value="">সব সাইজ</option>
+                        <option value="20-30">২০-৩০</option>
+                        <option value="21-30">২১-৩০</option>
+                    </select>
+                    
+                    <select id="sort-by">
+                        <option value="name">নাম অনুসারে</option>
+                        <option value="price-low">দাম: কম থেকে বেশি</option>
+                        <option value="price-high">দাম: বেশি থেকে কম</option>
+                        <option value="newest">নতুনতম</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-meta">
+                <div class="products-count">
+                    <span id="showing-count">0</span>টি পণ্য দেখানো হচ্ছে
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <img src="assets/images/icons/ui/grid-view.png" alt="গ্রিড ভিউ" onerror="this.src='assets/images/placeholder.jpg'">
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <img src="assets/images/icons/ui/list-view.png" alt="লিস্ট ভিউ" onerror="this.src='assets/images/placeholder.jpg'">
+                    </button>
+                </div>
+            </div>
+
+            <div class="products-container">
+                <div class="products-grid" id="all-products">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>পণ্য লোড হচ্ছে...</p>
+                    </div>
+                </div>
+                
+                <div class="no-products" id="no-products" style="display: none;">
+                    <div class="empty-state">
+                        <img src="assets/images/icons/ui/search-empty.png" alt="কোন পণ্য পাওয়া যায়নি" onerror="this.src='assets/images/placeholder.jpg'">
+                        <h3>কোন পণ্য পাওয়া যায়নি</h3>
+                        <p>আপনার সার্চ বা ফিল্টারের সাথে মিলছে এমন কোন পণ্য নেই</p>
+                        <button class="btn btn-primary" id="reset-filters">ফিল্টার রিসেট করুন</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="btn btn-outline" id="load-more">আরও পণ্য দেখুন</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Banner -->
+    <section class="features-banner">
+        <div class="container">
+            <div class="banner-content">
+                <h2>আপনার শিশুর জন্য সেরা পছন্দ</h2>
+                <p>৭ বছরের অভিজ্ঞতা নিয়ে আমরা শুধুমাত্র উন্নত মানের পণ্য সরবরাহ করি</p>
+                <div class="banner-features">
+                    <div class="banner-feature">
+                        <img src="assets/images/icons/features/quality.png" alt="উচ্চ মান" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>১০০% অরিজিনাল</span>
+                    </div>
+                    <div class="banner-feature">
+                        <img src="assets/images/icons/features/delivery.png" alt="দ্রুত ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>দ্রুত ডেলিভারি</span>
+                    </div>
+                    <div class="banner-feature">
+                        <img src="assets/images/icons/features/cod.png" alt="ক্যাশ অন ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                        <span>ক্যাশ অন ডেলিভারি</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/product.js"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initializeMobileMenu();
+                    // Set active nav link
+                    setActiveNavLink('shop');
+                });
+
+            // Load footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Initialize shop functionality
+            initializeShop();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+        }
+
+        function setActiveNavLink(page) {
+            // This function will be implemented in main JS
+            console.log('Setting active nav for:', page);
+        }
+
+        function initializeShop() {
+            // Initialize view toggle
+            const viewBtns = document.querySelectorAll('.view-btn');
+            const productsContainer = document.querySelector('.products-container');
+            
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    viewBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const viewType = this.getAttribute('data-view');
+                    productsContainer.setAttribute('data-view', viewType);
+                });
+            });
+
+            // Initialize filter functionality
+            initializeFilters();
+            
+            // Initialize load more button
+            const loadMoreBtn = document.getElementById('load-more');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', loadMoreProducts);
+            }
+
+            // Initialize reset filters button
+            const resetFiltersBtn = document.getElementById('reset-filters');
+            if (resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', resetFilters);
+            }
+        }
+
+        function initializeFilters() {
+            const searchInput = document.getElementById('product-search');
+            const categoryFilter = document.getElementById('category-filter');
+            const sizeFilter = document.getElementById('size-filter');
+            const sortBy = document.getElementById('sort-by');
+            
+            // Add event listeners for real-time filtering
+            [searchInput, categoryFilter, sizeFilter, sortBy].forEach(element => {
+                element.addEventListener('change', filterProducts);
+                element.addEventListener('input', filterProducts);
+            });
+        }
+
+        function filterProducts() {
+            // This function will be implemented in product.js
+            console.log('Filtering products...');
+        }
+
+        function loadMoreProducts() {
+            // This function will be implemented in product.js
+            console.log('Loading more products...');
+        }
+
+        function resetFilters() {
+            document.getElementById('product-search').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('size-filter').value = '';
+            document.getElementById('sort-by').value = 'name';
+            filterProducts();
+        }
+    </script>
+</body>
+</html>

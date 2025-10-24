@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শপিং কার্ট - TinyStepsBD</title>
+    <meta name="description" content="আপনার শপিং কার্ট দেখুন এবং অর্ডার সম্পন্ন করুন। TinyStepsBD এ শিশু জুতা ও স্যান্ডেল।">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/ui/logo.png">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">হোম</a>
+                <span class="separator">/</span>
+                <a href="shop.html">পণ্য</a>
+                <span class="separator">/</span>
+                <span class="current">শপিং কার্ট</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <h2>আপনার শপিং কার্ট</h2>
+                        <span class="items-count" id="cart-items-count">০টি পণ্য</span>
+                    </div>
+
+                    <div class="cart-content" id="cart-content">
+                        <!-- Empty Cart State -->
+                        <div class="empty-cart" id="empty-cart">
+                            <div class="empty-state">
+                                <img src="assets/images/icons/ui/empty-cart.png" alt="কার্ট খালি" onerror="this.src='assets/images/placeholder.jpg'">
+                                <h3>আপনার কার্ট খালি</h3>
+                                <p>আপনার কার্টে এখনও কোন পণ্য নেই। শপিং চালিয়ে যান এবং কিছু পণ্য যোগ করুন।</p>
+                                <a href="shop.html" class="btn btn-primary">পণ্য ব্রাউজ করুন</a>
+                            </div>
+                        </div>
+
+                        <!-- Cart Items List -->
+                        <div class="cart-items-list" id="cart-items-list" style="display: none;">
+                            <div class="cart-table">
+                                <div class="cart-table-header">
+                                    <div class="col-product">পণ্য</div>
+                                    <div class="col-price">দাম</div>
+                                    <div class="col-quantity">পরিমাণ</div>
+                                    <div class="col-total">মোট</div>
+                                    <div class="col-actions"></div>
+                                </div>
+                                <div class="cart-table-body" id="cart-table-body">
+                                    <!-- Cart items will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Actions -->
+                    <div class="cart-actions" id="cart-actions" style="display: none;">
+                        <div class="continue-shopping">
+                            <a href="shop.html" class="btn btn-outline">
+                                <span class="btn-icon">←</span>
+                                শপিং চালিয়ে যান
+                            </a>
+                        </div>
+                        <div class="cart-buttons">
+                            <button class="btn btn-secondary" id="update-cart">
+                                কার্ট আপডেট করুন
+                            </button>
+                            <button class="btn btn-primary" id="proceed-checkout">
+                                চেকআউট করুন
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-card">
+                        <h3>অর্ডার সামারি</h3>
+                        
+                        <div class="summary-items">
+                            <div class="summary-row">
+                                <span>সাবটোটাল</span>
+                                <span id="subtotal-amount">০ ৳</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>ডেলিভারি চার্জ</span>
+                                <span id="delivery-charge">০ ৳</span>
+                            </div>
+                            <div class="summary-row discount-row">
+                                <span>ডিসকাউন্ট</span>
+                                <span id="discount-amount">০ ৳</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>মোট Amount</span>
+                                <span id="total-amount">০ ৳</span>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Info -->
+                        <div class="delivery-info">
+                            <h4>ডেলিভারি তথ্য</h4>
+                            <div class="delivery-options">
+                                <div class="delivery-option">
+                                    <input type="radio" id="inside-dhaka" name="delivery" value="inside" checked>
+                                    <label for="inside-dhaka">
+                                        <span class="option-title">ঢাকা শহর</span>
+                                        <span class="option-price">৮০ ৳</span>
+                                    </label>
+                                </div>
+                                <div class="delivery-option">
+                                    <input type="radio" id="outside-dhaka" name="delivery" value="outside">
+                                    <label for="outside-dhaka">
+                                        <span class="option-title">বিভাগীয় শহর</span>
+                                        <span class="option-price">১৫০ ৳</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Code -->
+                        <div class="coupon-section">
+                            <h4>কুপন কোড</h4>
+                            <div class="coupon-input">
+                                <input type="text" id="coupon-code" placeholder="কুপন কোড লিখুন">
+                                <button class="btn btn-outline" id="apply-coupon">অ্যাপ্লাই</button>
+                            </div>
+                            <div class="coupon-message" id="coupon-message"></div>
+                        </div>
+
+                        <!-- Checkout Button -->
+                        <button class="btn btn-primary btn-large btn-full" id="checkout-btn">
+                            <span class="btn-icon">🔒</span>
+                            নিরাপদ চেকআউট
+                        </button>
+
+                        <!-- Security Features -->
+                        <div class="security-features">
+                            <div class="security-item">
+                                <img src="assets/images/icons/features/cod.png" alt="ক্যাশ অন ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                                <span>ক্যাশ অন ডেলিভারি</span>
+                            </div>
+                            <div class="security-item">
+                                <img src="assets/images/icons/features/secure.png" alt="নিরাপদ" onerror="this.src='assets/images/placeholder.jpg'">
+                                <span>১০০% নিরাপদ</span>
+                            </div>
+                            <div class="security-item">
+                                <img src="assets/images/icons/features/support.png" alt="সাপোর্ট" onerror="this.src='assets/images/placeholder.jpg'">
+                                <span>২৪/৭ সাপোর্ট</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <img src="assets/images/icons/features/quality.png" alt="উচ্চ মান" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>১০০% অরিজিনাল পণ্য</span>
+                        </div>
+                        <div class="trust-badge">
+                            <img src="assets/images/icons/features/return.png" alt="রিটার্ন" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>৭ দিন রিটার্ন</span>
+                        </div>
+                        <div class="trust-badge">
+                            <img src="assets/images/icons/features/warranty.png" alt="ওয়ারেন্টি" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>৩ মাস ওয়ারেন্টি</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Viewed -->
+    <section class="recently-viewed" id="recently-viewed" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">সম্প্রতি দেখা পণ্য</h2>
+            <div class="products-grid" id="recent-products">
+                <!-- Recently viewed products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/data-manager.js"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initializeMobileMenu();
+                    setActiveNavLink('cart');
+                    updateCartCount();
+                });
+
+            // Load footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Initialize cart page
+            initializeCartPage();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+        }
+
+        function setActiveNavLink(page) {
+            // This function will be implemented in main JS
+            console.log('Setting active nav for:', page);
+        }
+
+        function updateCartCount() {
+            // This function will be implemented in cart.js
+            console.log('Updating cart count...');
+        }
+
+        function initializeCartPage() {
+            // Load cart items
+            loadCartItems();
+            
+            // Initialize event listeners
+            initializeEventListeners();
+            
+            // Load recently viewed products
+            loadRecentlyViewed();
+        }
+
+        function loadCartItems() {
+            const cartItems = getCartItems();
+            
+            if (cartItems.length === 0) {
+                showEmptyCart();
+            } else {
+                showCartItems(cartItems);
+                updateOrderSummary(cartItems);
+            }
+        }
+
+        function getCartItems() {
+            // This will be implemented in cart.js
+            // For now, return sample data
+            return [
+                {
+                    id: 'TS-BD_517',
+                    name: '০-১.৫ বছর বয়সী শিশুর বাচ্চাদের জুতা',
+                    price: 890,
+                    quantity: 1,
+                    color: 'সাদা',
+                    size: '25',
+                    image: 'https://drive.google.com/uc?export=view&id=1QSWmGWKcmh0PHEZDThC2m4PMOyy4iljU',
+                    maxQuantity: 10
+                },
+                {
+                    id: 'TS-BD_518',
+                    name: 'LED হালকা ছেলেদের স্পোর্টস জুতা',
+                    price: 1490,
+                    quantity: 2,
+                    color: 'খাকি',
+                    size: '26',
+                    image: 'https://drive.google.com/uc?export=view&id=13TN1Fx8DJIWv8QUoyuAbCbtWg9AERmnu',
+                    maxQuantity: 10
+                }
+            ];
+        }
+
+        function showEmptyCart() {
+            document.getElementById('empty-cart').style.display = 'block';
+            document.getElementById('cart-items-list').style.display = 'none';
+            document.getElementById('cart-actions').style.display = 'none';
+            document.getElementById('cart-items-count').textContent = '০টি পণ্য';
+        }
+
+        function showCartItems(items) {
+            document.getElementById('empty-cart').style.display = 'none';
+            document.getElementById('cart-items-list').style.display = 'block';
+            document.getElementById('cart-actions').style.display = 'flex';
+            
+            document.getElementById('cart-items-count').textContent = `${items.length}টি পণ্য`;
+            
+            const cartTableBody = document.getElementById('cart-table-body');
+            cartTableBody.innerHTML = items.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="col-product">
+                        <div class="product-info">
+                            <div class="product-image">
+                                <img src="${item.image}" alt="${item.name}" onerror="this.src='assets/images/placeholder.jpg'">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">${item.name}</h4>
+                                <div class="product-variants">
+                                    <span class="variant">রং: ${item.color}</span>
+                                    <span class="variant">সাইজ: ${item.size}</span>
+                                </div>
+                                <div class="product-mobile-price">
+                                    ${item.price} ৳
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-price">
+                        <span class="product-price">${item.price} ৳</span>
+                    </div>
+                    <div class="col-quantity">
+                        <div class="quantity-selector">
+                            <button type="button" class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="${item.maxQuantity}" data-id="${item.id}">
+                            <button type="button" class="quantity-btn increase" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                    <div class="col-total">
+                        <span class="item-total">${item.price * item.quantity} ৳</span>
+                    </div>
+                    <div class="col-actions">
+                        <button class="remove-btn" data-id="${item.id}" title="পণ্য সরান">
+                            <img src="assets/images/icons/ui/close.png" alt="সরান" onerror="this.src='assets/images/placeholder.jpg'">
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateOrderSummary(items) {
+            const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryCharge = getDeliveryCharge();
+            const discount = getDiscountAmount();
+            const total = subtotal + deliveryCharge - discount;
+            
+            document.getElementById('subtotal-amount').textContent = `${subtotal} ৳`;
+            document.getElementById('delivery-charge').textContent = `${deliveryCharge} ৳`;
+            document.getElementById('discount-amount').textContent = `-${discount} ৳`;
+            document.getElementById('total-amount').textContent = `${total} ৳`;
+        }
+
+        function getDeliveryCharge() {
+            const selectedOption = document.querySelector('input[name="delivery"]:checked');
+            return selectedOption ? parseInt(selectedOption.value === 'inside' ? 80 : 150) : 0;
+        }
+
+        function getDiscountAmount() {
+            // This will be implemented with coupon logic
+            return 0;
+        }
+
+        function initializeEventListeners() {
+            // Quantity buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.quantity-btn')) {
+                    const button = e.target.closest('.quantity-btn');
+                    const itemId = button.getAttribute('data-id');
+                    const isIncrease = button.classList.contains('increase');
+                    
+                    updateQuantity(itemId, isIncrease);
+                }
+                
+                if (e.target.closest('.remove-btn')) {
+                    const button = e.target.closest('.remove-btn');
+                    const itemId = button.getAttribute('data-id');
+                    
+                    removeFromCart(itemId);
+                }
+            });
+            
+            // Quantity input changes
+            document.addEventListener('change', function(e) {
+                if (e.target.classList.contains('quantity-input')) {
+                    const input = e.target;
+                    const itemId = input.getAttribute('data-id');
+                    const quantity = parseInt(input.value);
+                    
+                    if (quantity >= 1 && quantity <= 10) {
+                        updateCartItemQuantity(itemId, quantity);
+                    } else {
+                        input.value = 1;
+                        updateCartItemQuantity(itemId, 1);
+                    }
+                }
+            });
+            
+            // Delivery option changes
+            document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const cartItems = getCartItems();
+                    updateOrderSummary(cartItems);
+                });
+            });
+            
+            // Coupon application
+            document.getElementById('apply-coupon').addEventListener('click', applyCoupon);
+            
+            // Checkout button
+            document.getElementById('checkout-btn').addEventListener('click', proceedToCheckout);
+            document.getElementById('proceed-checkout').addEventListener('click', proceedToCheckout);
+            
+            // Update cart button
+            document.getElementById('update-cart').addEventListener('click', updateCart);
+        }
+
+        function updateQuantity(itemId, isIncrease) {
+            const input = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
+            let quantity = parseInt(input.value);
+            
+            if (isIncrease) {
+                if (quantity < 10) {
+                    quantity++;
+                }
+            } else {
+                if (quantity > 1) {
+                    quantity--;
+                }
+            }
+            
+            input.value = quantity;
+            updateCartItemQuantity(itemId, quantity);
+        }
+
+        function updateCartItemQuantity(itemId, quantity) {
+            // This will be implemented in cart.js
+            console.log(`Updating item ${itemId} quantity to ${quantity}`);
+            
+            // Simulate update
+            const cartItems = getCartItems();
+            updateOrderSummary(cartItems);
+        }
+
+        function removeFromCart(itemId) {
+            if (confirm('আপনি কি নিশ্চিত যে আপনি এই পণ্যটি কার্ট থেকে সরাতে চান?')) {
+                // This will be implemented in cart.js
+                console.log(`Removing item ${itemId} from cart`);
+                
+                // Simulate removal
+                const cartItems = getCartItems().filter(item => item.id !== itemId);
+                
+                if (cartItems.length === 0) {
+                    showEmptyCart();
+                } else {
+                    showCartItems(cartItems);
+                    updateOrderSummary(cartItems);
+                }
+                
+                updateCartCount();
+            }
+        }
+
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-code').value.trim();
+            const messageElement = document.getElementById('coupon-message');
+            
+            if (!couponCode) {
+                messageElement.textContent = 'দয়া করে একটি কুপন কোড লিখুন';
+                messageElement.className = 'coupon-message error';
+                return;
+            }
+            
+            // Simulate coupon validation
+            if (couponCode === 'TINY10') {
+                messageElement.textContent = 'কুপন সফলভাবে অ্যাপ্লাই করা হয়েছে! ১০% ডিসকাউন্ট প্রয়োগ করা হয়েছে।';
+                messageElement.className = 'coupon-message success';
+                
+                // Update order summary with discount
+                const cartItems = getCartItems();
+                updateOrderSummary(cartItems);
+            } else {
+                messageElement.textContent = 'অবৈধ কুপন কোড। দয়া করে সঠিক কোড লিখুন।';
+                messageElement.className = 'coupon-message error';
+            }
+        }
+
+        function proceedToCheckout() {
+            const cartItems = getCartItems();
+            
+            if (cartItems.length === 0) {
+                alert('আপনার কার্ট খালি। চেকআউট করতে পণ্য যোগ করুন।');
+                return;
+            }
+            
+            // Validate all items have color and size selected
+            const invalidItems = cartItems.filter(item => !item.color || !item.size);
+            
+            if (invalidItems.length > 0) {
+                alert('দয়া করে সকল পণ্যের রং এবং সাইজ নির্বাচন করুন।');
+                return;
+            }
+            
+            // Proceed to checkout
+            window.location.href = 'checkout.html';
+        }
+
+        function updateCart() {
+            // This will save all current quantities and options
+            const cartItems = getCartItems();
+            console.log('Updating cart with items:', cartItems);
+            
+            alert('কার্ট সফলভাবে আপডেট করা হয়েছে!');
+        }
+
+        function loadRecentlyViewed() {
+            // This will be implemented in data-manager.js
+            // For now, hide the section
+            document.getElementById('recently-viewed').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

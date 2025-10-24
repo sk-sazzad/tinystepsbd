@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পণ্য বিবরণ - TinyStepsBD</title>
+    <meta name="description" content="পণ্যের সম্পূর্ণ বিবরণ দেখুন এবং অর্ডার করুন। উচ্চ মানের শিশু জুতা শুধুমাত্র TinyStepsBD এ।">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/ui/logo.png">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">হোম</a>
+                <span class="separator">/</span>
+                <a href="shop.html">পণ্য</a>
+                <span class="separator">/</span>
+                <span class="current">পণ্য বিবরণ</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+        <div class="container">
+            <div class="product-details-grid">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="main-product-image" src="assets/images/placeholder.jpg" alt="পণ্যের মূল ছবি">
+                    </div>
+                    <div class="image-thumbnails" id="image-thumbnails">
+                        <!-- Thumbnails will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <div class="product-meta">
+                        <span class="product-category" id="product-category">জুতা</span>
+                        <span class="product-id" id="product-id">TS-BD_000</span>
+                    </div>
+                    
+                    <h1 class="product-title" id="product-title">পণ্যের নাম</h1>
+                    
+                    <div class="product-price">
+                        <span class="current-price" id="product-price">০ ৳</span>
+                    </div>
+                    
+                    <div class="product-rating">
+                        <div class="stars">
+                            <span class="star filled">⭐</span>
+                            <span class="star filled">⭐</span>
+                            <span class="star filled">⭐</span>
+                            <span class="star filled">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <span class="rating-text">(১২ রিভিউ)</span>
+                    </div>
+                    
+                    <div class="product-description">
+                        <p id="product-description">পণ্যের বিবরণ লোড হচ্ছে...</p>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">ক্যাটাগরি:</span>
+                            <span class="spec-value" id="spec-category">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">সাইজ:</span>
+                            <span class="spec-value" id="spec-size">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">রং:</span>
+                            <span class="spec-value" id="spec-color">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">স্টক:</span>
+                            <span class="spec-value in-stock" id="spec-stock">ইন স্টক</span>
+                        </div>
+                    </div>
+
+                    <!-- Order Form -->
+                    <div class="order-form">
+                        <div class="form-group">
+                            <label for="product-color">রং নির্বাচন করুন</label>
+                            <select id="product-color" class="form-control">
+                                <option value="">রং নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-size">সাইজ নির্বাচন করুন</label>
+                            <select id="product-size" class="form-control">
+                                <option value="">সাইজ নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-quantity">পরিমাণ</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-btn" id="quantity-decrease">-</button>
+                                <input type="number" id="product-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button type="button" class="quantity-btn" id="quantity-increase">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-primary btn-large" id="add-to-cart">
+                                <span class="btn-icon">🛒</span>
+                                কার্টে যোগ করুন
+                            </button>
+                            <button class="btn btn-secondary btn-large" id="buy-now">
+                                <span class="btn-icon">⚡</span>
+                                এখনই কিনুন
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="product-features">
+                        <div class="feature">
+                            <img src="assets/images/icons/features/delivery.png" alt="ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>অভ্যন্তরীণ: ৮০৳, বহিঃস্থ: ১৫০৳</span>
+                        </div>
+                        <div class="feature">
+                            <img src="assets/images/icons/features/cod.png" alt="ক্যাশ অন ডেলিভারি" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>ক্যাশ অন ডেলিভারি</span>
+                        </div>
+                        <div class="feature">
+                            <img src="assets/images/icons/features/return.png" alt="রিটার্ন" onerror="this.src='assets/images/placeholder.jpg'">
+                            <span>৭ দিন রিটার্ন পলিসি</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Tabs -->
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="description">বিবরণ</button>
+                    <button class="tab-btn" data-tab="specifications">স্পেসিফিকেশন</button>
+                    <button class="tab-btn" data-tab="reviews">রিভিউ</button>
+                    <button class="tab-btn" data-tab="shipping">ডেলিভারি</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="description-panel">
+                        <div class="tab-content" id="product-full-description">
+                            <p>পণ্যের সম্পূর্ণ বিবরণ লোড হচ্ছে...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="specifications-panel">
+                        <div class="specs-table">
+                            <div class="spec-row">
+                                <div class="spec-name">পণ্য আইডি</div>
+                                <div class="spec-value" id="spec-product-id">-</div>
+                            </div>
+                            <div class="spec-row">
+                                <div class="spec-name">ক্যাটাগরি</div>
+                                <div class="spec-value" id="spec-tab-category">-</div>
+                            </div>
+                            <div class="spec-row">
+                                <div class="spec-name">সাইজ রেঞ্জ</div>
+                                <div class="spec-value" id="spec-tab-size">-</div>
+                            </div>
+                            <div class="spec-row">
+                                <div class="spec-name">রং</div>
+                                <div class="spec-value" id="spec-tab-color">-</div>
+                            </div>
+                            <div class="spec-row">
+                                <div class="spec-name">বয়স গ্রুপ</div>
+                                <div class="spec-value" id="spec-age-group">-</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="reviews-panel">
+                        <div class="reviews-summary">
+                            <div class="overall-rating">
+                                <div class="rating-score">৪.২</div>
+                                <div class="rating-stars">
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star filled">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                                <div class="rating-text">১২টি রিভিউ</div>
+                            </div>
+                            <div class="rating-bars">
+                                <!-- Rating bars will be populated dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <h4>আফসানা বেগম</h4>
+                                        <div class="review-rating">
+                                            <span class="star filled">⭐</span>
+                                            <span class="star filled">⭐</span>
+                                            <span class="star filled">⭐</span>
+                                            <span class="star filled">⭐</span>
+                                            <span class="star filled">⭐</span>
+                                        </div>
+                                    </div>
+                                    <span class="review-date">১৫ মার্চ, ২০২৫</span>
+                                </div>
+                                <p class="review-content">পণ্যটি খুবই ভালো quality এর, আমার শিশুর জন্য perfect fit। ডেলিভারিও সময়মতো পেয়েছি।</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-panel" id="shipping-panel">
+                        <div class="shipping-info">
+                            <h3>ডেলিভারি তথ্য</h3>
+                            <div class="shipping-options">
+                                <div class="shipping-option">
+                                    <h4>ঢাকা শহর</h4>
+                                    <p>ডেলিভারি চার্জ: ৮০৳</p>
+                                    <p>ডেলিভারি সময়: ১-২ কার্যদিবস</p>
+                                </div>
+                                <div class="shipping-option">
+                                    <h4>বিভাগীয় শহর</h4>
+                                    <p>ডেলিভারি চার্জ: ১৫০৳</p>
+                                    <p>ডেলিভারি সময়: ২-৪ কার্যদিবস</p>
+                                </div>
+                                <div class="shipping-option">
+                                    <h4>গ্রামাঞ্চল</h4>
+                                    <p>ডেলিভারি চার্জ: ২০০৳</p>
+                                    <p>ডেলিভারি সময়: ৩-৫ কার্যদিবস</p>
+                                </div>
+                            </div>
+                            
+                            <div class="return-policy">
+                                <h3>রিটার্ন পলিসি</h3>
+                                <p>পণ্য পাওয়ার ৭ দিনের মধ্যে যেকোনো সমস্যায় রিটার্ন করতে পারবেন। পণ্য অক্ষত অবস্থায় থাকতে হবে।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">সম্পর্কিত পণ্য</h2>
+            <div class="products-grid" id="related-products">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>সম্পর্কিত পণ্য লোড হচ্ছে...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/product.js"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initializeMobileMenu();
+                    setActiveNavLink('shop');
+                });
+
+            // Load footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Load product details
+            loadProductDetails();
+            
+            // Initialize product page functionality
+            initializeProductPage();
+        });
+
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileNav.classList.toggle('active');
+                });
+            }
+        }
+
+        function setActiveNavLink(page) {
+            // This function will be implemented in main JS
+            console.log('Setting active nav for:', page);
+        }
+
+        function loadProductDetails() {
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId) {
+                showError('পণ্য আইডি পাওয়া যায়নি');
+                return;
+            }
+            
+            // Fetch product details from API
+            fetchProductDetails(productId);
+        }
+
+        function fetchProductDetails(productId) {
+            // This function will be implemented in product.js
+            console.log('Fetching product details for:', productId);
+            
+            // Simulate API call
+            setTimeout(() => {
+                // For demo purposes, we'll simulate product data
+                const productData = {
+                    id: productId,
+                    name: "শিশুর জন্য কমফোর্টেবল জুতা",
+                    description: "বসন্ত এবং শরৎ ০-১.৫ বছর বয়সী শিশুর বাচ্চাদের জুতা পিইউ ভেলক্রো ছেলে এবং মেয়েদের বাচ্চাদের স্নিকার্স ইনডোর এবং আউটডোর চামড়ার জুতা নরম সোল",
+                    price: "৮৯০",
+                    category: "Boys/Girls",
+                    size: "20-30",
+                    color: "সাদা, কালো, গাঢ় বাদামী, আর্মি গ্রিন,নীল, গোলাপি, খুবানি, সাদা হৃদয়, গোলাপী সাদা হৃদয়, বাদামী প্যাটার্ন, চিতাবাঘের ছাপ",
+                    images: [
+                        "https://drive.google.com/uc?export=view&id=1QSWmGWKcmh0PHEZDThC2m4PMOyy4iljU",
+                        "https://drive.google.com/uc?export=view&id=1XDmC9JFguiC12DB-4FL4B2hOFQZXVM8m",
+                        "https://drive.google.com/uc?export=view&id=15OOh6I6alWOZEu4-JfA_0-GK9fTz1EJk"
+                    ]
+                };
+                
+                displayProductDetails(productData);
+            }, 1000);
+        }
+
+        function displayProductDetails(product) {
+            // Update product information
+            document.getElementById('product-title').textContent = product.name;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-price').textContent = product.price + ' ৳';
+            document.getElementById('product-id').textContent = product.id;
+            document.getElementById('product-category').textContent = product.category;
+            
+            // Update specifications
+            document.getElementById('spec-category').textContent = product.category;
+            document.getElementById('spec-size').textContent = product.size;
+            document.getElementById('spec-color').textContent = product.color;
+            
+            // Update tab specifications
+            document.getElementById('spec-product-id').textContent = product.id;
+            document.getElementById('spec-tab-category').textContent = product.category;
+            document.getElementById('spec-tab-size').textContent = product.size;
+            document.getElementById('spec-tab-color').textContent = product.color;
+            
+            // Update full description
+            document.getElementById('product-full-description').innerHTML = `
+                <p>${product.description}</p>
+                <h4>বিশেষ বৈশিষ্ট্য:</h4>
+                <ul>
+                    <li>নরম এবং কমফোর্টেবল সোল</li>
+                    <li>উচ্চ মানের উপকরণ</li>
+                    <li>ভেলক্রো ফাস্টেনার</li>
+                    <li>ইনডোর এবং আউটডোর ব্যবহারের জন্য উপযুক্ত</li>
+                </ul>
+            `;
+            
+            // Update images
+            updateProductImages(product.images);
+            
+            // Update color and size options
+            updateProductOptions(product);
+        }
+
+        function updateProductImages(images) {
+            const mainImage = document.getElementById('main-product-image');
+            const thumbnailsContainer = document.getElementById('image-thumbnails');
+            
+            if (images && images.length > 0) {
+                mainImage.src = images[0];
+                mainImage.alt = document.getElementById('product-title').textContent;
+                
+                // Create thumbnails
+                thumbnailsContainer.innerHTML = images.map((image, index) => `
+                    <div class="thumbnail ${index === 0 ? 'active' : ''}" data-image="${image}">
+                        <img src="${image}" alt="Thumbnail ${index + 1}" onerror="this.src='assets/images/placeholder.jpg'">
+                    </div>
+                `).join('');
+            }
+        }
+
+        function updateProductOptions(product) {
+            const colorSelect = document.getElementById('product-color');
+            const sizeSelect = document.getElementById('product-size');
+            
+            // Update color options
+            const colors = product.color.split(',').map(c => c.trim());
+            colorSelect.innerHTML = '<option value="">রং নির্বাচন করুন</option>' +
+                colors.map(color => `<option value="${color}">${color}</option>`).join('');
+            
+            // Update size options
+            const sizes = product.size.split('-');
+            sizeSelect.innerHTML = '<option value="">সাইজ নির্বাচন করুন</option>' +
+                Array.from({length: parseInt(sizes[1]) - parseInt(sizes[0]) + 1}, (_, i) => 
+                    `<option value="${parseInt(sizes[0]) + i}">${parseInt(sizes[0]) + i}</option>`
+                ).join('');
+        }
+
+        function initializeProductPage() {
+            // Initialize image thumbnails
+            initializeImageGallery();
+            
+            // Initialize quantity selector
+            initializeQuantitySelector();
+            
+            // Initialize tabs
+            initializeTabs();
+            
+            // Initialize action buttons
+            initializeActionButtons();
+        }
+
+        function initializeImageGallery() {
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.thumbnail')) {
+                    const thumbnail = e.target.closest('.thumbnail');
+                    const mainImage = document.getElementById('main-product-image');
+                    const imageUrl = thumbnail.getAttribute('data-image');
+                    
+                    // Update main image
+                    mainImage.src = imageUrl;
+                    
+                    // Update active thumbnail
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                }
+            });
+        }
+
+        function initializeQuantitySelector() {
+            const decreaseBtn = document.getElementById('quantity-decrease');
+            const increaseBtn = document.getElementById('quantity-increase');
+            const quantityInput = document.getElementById('product-quantity');
+            
+            decreaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    quantityInput.value = value - 1;
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value < 10) {
+                    quantityInput.value = value + 1;
+                }
+            });
+        }
+
+        function initializeTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active tab panel
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+                    document.getElementById(tabId + '-panel').classList.add('active');
+                });
+            });
+        }
+
+        function initializeActionButtons() {
+            const addToCartBtn = document.getElementById('add-to-cart');
+            const buyNowBtn = document.getElementById('buy-now');
+            
+            addToCartBtn.addEventListener('click', function() {
+                addToCart();
+            });
+            
+            buyNowBtn.addEventListener('click', function() {
+                addToCart(true);
+            });
+        }
+
+        function addToCart(buyNow = false) {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            const color = document.getElementById('product-color').value;
+            const size = document.getElementById('product-size').value;
+            const quantity = document.getElementById('product-quantity').value;
+            
+            if (!color || !size) {
+                alert('দয়া করে রং এবং সাইজ নির্বাচন করুন');
+                return;
+            }
+            
+            // Add to cart logic (to be implemented in cart.js)
+            console.log('Adding to cart:', { productId, color, size, quantity });
+            
+            if (buyNow) {
+                window.location.href = 'checkout.html';
+            } else {
+                alert('পণ্যটি কার্টে যোগ করা হয়েছে!');
+            }
+        }
+
+        function showError(message) {
+            const productInfo = document.querySelector('.product-info');
+            productInfo.innerHTML = `
+                <div class="error-state">
+                    <h3>ত্রুটি!</h3>
+                    <p>${message}</p>
+                    <a href="shop.html" class="btn btn-primary">পণ্য পাতায় ফিরে যান</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
